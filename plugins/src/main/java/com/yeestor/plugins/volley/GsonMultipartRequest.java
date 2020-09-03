@@ -197,7 +197,7 @@ public class GsonMultipartRequest<T> extends Request<T> {
         public DataPart() {
         }
 
-        DataPart(String name, byte[] data) {
+        public DataPart(String name, byte[] data) {
             fileName = name;
             content = data;
         }

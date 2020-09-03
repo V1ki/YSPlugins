@@ -1,0 +1,39 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.yeestor.plugins' // PACKAGE NAME FROM BINTRAY ACCOUNT
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                groupId 'com.yeestor.plugins' // PACKAGE NAME FROM BINTRAY ACCOUNT
+                artifactId 'YSPlugins' // THE NAME OF YOUR MODULE
+
+                name 'YSPlugins' // YOUR LIBRARY NAME
+                description 'YSPlugin是用于存放一些常用的工具类的私有库.' // YOUR LIBRARY DESCRIPTION
+                url 'https://github.com/V1ki/YSPlugins' // YOUR SITE
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'V1ki' //YOUR GITHUB ID
+                        name 'Wan Jiankun' //YOUR NAME
+                        email 'kunwanjian@gmail.com' //YOUR EMAIL
+                    }
+                }
+                scm {
+                    connection 'https://github.com/V1ki/YSPlugins.git' // YOUR GIT REPO
+                    developerConnection 'https://github.com/V1ki/YSPlugins.git' // YOUR GIT REPO
+                    url 'https://github.com/V1ki/YSPlugins' // YOUR SITE
+
+                }
+            }
+        }
+    }
+}

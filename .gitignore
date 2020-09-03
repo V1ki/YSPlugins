@@ -12,3 +12,9 @@
 /captures
 .externalNativeBuild
 .cxx
+/.svnignore
+/gradlew
+/gradlew.bat
+/plugins/src/main/java/com/yeestor/plugin/UsageApplication.java
+/.idea/
+/gradle/wrapper/

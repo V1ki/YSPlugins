@@ -1,0 +1,2 @@
+include ':plugins'
+rootProject.name = "YSPlugins"

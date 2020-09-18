@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.yeestor.demo"
-        minSdkVersion 26
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -36,18 +36,17 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     def acraVersion = '5.7.0'
-    implementation "ch.acra:acra-mail:$acraVersion"
-    implementation "ch.acra:acra-toast:$acraVersion"
-    implementation "ch.acra:acra-notification:$acraVersion"
     implementation "ch.acra:acra-core:$acraVersion"
     implementation "ch.acra:acra-http:$acraVersion"
 
 
-    compileOnly "com.google.auto.service:auto-service-annotations:1.0-rc7"
+    implementation "com.google.auto.service:auto-service-annotations:1.0-rc7"
     annotationProcessor "com.google.auto.service:auto-service:1.0-rc7"
 
     implementation 'com.sun.mail:android-mail:1.6.4'
     implementation 'com.sun.mail:android-activation:1.6.4'
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.google.code.gson:gson:2.8.6'
+
+//
 }

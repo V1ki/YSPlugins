@@ -3,7 +3,6 @@ package com.yeestor.plugins.acra.mail.config;
 import androidx.annotation.NonNull;
 
 import org.acra.config.Configuration;
-import org.acra.config.MailSenderConfiguration;
 
 import java.io.Serializable;
 

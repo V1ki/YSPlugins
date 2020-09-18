@@ -3,7 +3,6 @@ package com.yeestor.plugins.acra.mail;
 
 import android.content.Context;
 
-import com.google.auto.service.AutoService;
 import com.yeestor.plugins.acra.mail.config.YSMailSenderConfig;
 
 import org.acra.annotation.AcraCore;

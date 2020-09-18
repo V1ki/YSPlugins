@@ -4,14 +4,16 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
+import androidx.annotation.NonNull;
+
 import com.yeestor.plugins.acra.mail.config.YSMailSenderConfig;
 
 import org.acra.config.ConfigUtils;
 import org.acra.config.CoreConfiguration;
-import org.acra.config.MailSenderConfiguration;
 import org.acra.data.CrashReportData;
 import org.acra.sender.ReportSender;
 import org.acra.sender.ReportSenderException;
+import org.acra.util.BundleWrapper;
 import org.acra.util.IOUtils;
 
 import java.io.File;
@@ -45,8 +47,19 @@ public class YSMailSender implements ReportSender {
         this.mailConfig = ConfigUtils.getPluginConfiguration(config,YSMailSenderConfig.class);
     }
 
+
     @Override
-    public void send(Context context, CrashReportData errorContent) throws ReportSenderException {
+    public void send(@NonNull Context context, @NonNull CrashReportData errorContent, @NonNull BundleWrapper extras) throws ReportSenderException {
+        sendMail(context,errorContent);
+    }
+
+    @Override
+    public void send(@NonNull Context context,@NonNull  CrashReportData errorContent) throws ReportSenderException {
+        sendMail(context,errorContent);
+    }
+
+
+    private void sendMail(@NonNull Context context, @NonNull CrashReportData errorContent) throws ReportSenderException {
         // Iterate over the CrashReportData instance and do whatever
         // you need with each pair of ReportField key / String value
         final PackageManager pm = context.getPackageManager();
@@ -149,6 +162,9 @@ public class YSMailSender implements ReportSender {
             e.printStackTrace();
         }
 //
-
+    }
+    @Override
+    public boolean requiresForeground() {
+        return false;
     }
 }

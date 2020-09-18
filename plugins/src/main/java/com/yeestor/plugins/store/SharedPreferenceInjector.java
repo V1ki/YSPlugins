@@ -6,14 +6,18 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-public class SharedPrefrenceInjector implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class SharedPreferenceInjector implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "SharedPrefrenceInjector" ;
 
     private static SharedPreferences sharedPreferences;
 
     private final HashMap<String,Field> fields = new HashMap<>() ;
+
+    public static List<Context> bindingContext = new ArrayList<>();
 
 
 
@@ -21,10 +25,26 @@ public class SharedPrefrenceInjector implements SharedPreferences.OnSharedPrefer
         SPFile file = context.getClass().getAnnotation(SPFile.class) ;
 
         if(file != null) {
-            Class clazz = context.getClass();
-            Field[] fields = clazz.getDeclaredFields();
-
             sharedPreferences = context.getSharedPreferences(file.name(), Context.MODE_PRIVATE);
+
+            setValue(context,sharedPreferences);
+            sharedPreferences.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
+                @Override
+                public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+                }
+            });
+
+        }
+    }
+
+
+    public static void setValue(Context context ,SharedPreferences sharedPreferences){
+        SPFile file = context.getClass().getAnnotation(SPFile.class) ;
+
+        if(file != null) {
+            Class clazz = context.getClass() ;
+            Field[] fields = clazz.getDeclaredFields();
 
             for (Field field : fields) {
                 if (field.isAnnotationPresent(SPProperty.class)) {
@@ -37,6 +57,8 @@ public class SharedPrefrenceInjector implements SharedPreferences.OnSharedPrefer
                         String key = set.name().isEmpty() ? field.getName() : set.name() ;
                         String value = sharedPreferences.getString(key,set.value());
                         field.set(context,  value);
+
+
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
